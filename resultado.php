@@ -63,6 +63,7 @@ $respostas_usuario = $_SESSION['respostas_usuario'];
 
         <a href="index.php?reiniciar=1">🔄 Jogar Novamente</a>
     </main>
+    <script src="assets/script.js"></script>
 </body>
 </html>
 
