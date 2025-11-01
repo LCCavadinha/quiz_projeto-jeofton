@@ -9,7 +9,6 @@ if (!isset($_SESSION['perguntas'])) {
 $perguntas = $_SESSION['perguntas'];
 $pergunta_atual = $_SESSION['pergunta_atual'];
 
-
 if ($pergunta_atual >= count($perguntas)) {
     header('Location: resultado.php');
     exit;
@@ -48,7 +47,8 @@ $pergunta = $perguntas[$pergunta_atual];
         </form>
         
         <br>
-        <a href="quiz.php">🔄 Recomeçar Quiz</a>
+        <a href="reiniciar.php">🔄 Recomeçar Quiz</a>
     </div>
 </body>
 </html>
+
