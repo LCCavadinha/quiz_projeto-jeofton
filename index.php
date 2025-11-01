@@ -1,165 +1,412 @@
 <?php
-session_start();
 $perguntas = [
+    
     [
-        'pergunta' => 'Qual é a capital do Brasil?',
-        'alternativas' => ['São Paulo', 'Rio de Janeiro', 'Brasília', 'Salvador'],
-        'resposta_correta' => 2
+        'id' => 1,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'Qual é o resultado de: console.log(0.1 + 0.2 === 0.3)?',
+        'alternativas' => [
+            'a' => 'true',
+            'b' => 'false',
+            'c' => 'undefined',
+            'd' => 'NaN',
+            'e' => 'TypeError'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quanto é 2 + 2?',
-        'alternativas' => ['3', '4', '5', '22'],
-        'resposta_correta' => 1
+        'id' => 2,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'O que é um "closure" em JavaScript?',
+        'alternativas' => [
+            'a' => 'Uma função que não retorna nada',
+            'b' => 'Uma função que tem acesso ao escopo externo mesmo após a função externa ter sido executada',
+            'c' => 'Um método para fechar conexões de banco de dados',
+            'd' => 'Uma forma de encerrar loops infinitos',
+            'e' => 'Um tipo de classe privada'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é o maior planeta do Sistema Solar?',
-        'alternativas' => ['Terra', 'Marte', 'Júpiter', 'Saturno'],
-        'resposta_correta' => 2
+        'id' => 3,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'Qual é a diferença principal entre "==" e "===" em JavaScript?',
+        'alternativas' => [
+            'a' => 'Não há diferença',
+            'b' => '=== é mais rápido que ==',
+            'c' => '== compara valores com coerção de tipo, === compara valores e tipos sem coerção',
+            'd' => '=== só funciona com números',
+            'e' => '== é deprecated'
+        ],
+        'resposta_correta' => 'c'
     ],
     [
-        'pergunta' => 'Quem pintou a Mona Lisa?',
-        'alternativas' => ['Michelangelo', 'Leonardo da Vinci', 'Rafael', 'Donatello'],
-        'resposta_correta' => 1
+        'id' => 4,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'O que o método Array.prototype.reduce() faz?',
+        'alternativas' => [
+            'a' => 'Remove elementos duplicados de um array',
+            'b' => 'Reduz o tamanho do array pela metade',
+            'c' => 'Executa uma função redutora em cada elemento do array, resultando em um único valor de retorno',
+            'd' => 'Diminui o valor de cada elemento do array',
+            'e' => 'Converte o array em string'
+        ],
+        'resposta_correta' => 'c'
     ],
     [
-        'pergunta' => 'Qual é o oceano mais extenso?',
-        'alternativas' => ['Atlântico', 'Índico', 'Ártico', 'Pacífico'],
-        'resposta_correta' => 3
+        'id' => 5,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'O que é "hoisting" em JavaScript?',
+        'alternativas' => [
+            'a' => 'Um método para ordenar arrays',
+            'b' => 'O comportamento de mover declarações para o topo do escopo durante a compilação',
+            'c' => 'Uma técnica de otimização de performance',
+            'd' => 'Um tipo de loop',
+            'e' => 'Uma forma de hospedar aplicações JavaScript'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Em que ano o homem pisou na Lua pela primeira vez?',
-        'alternativas' => ['1965', '1967', '1969', '1971'],
-        'resposta_correta' => 2
+        'id' => 6,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'Qual é o resultado de: typeof null?',
+        'alternativas' => [
+            'a' => '"null"',
+            'b' => '"undefined"',
+            'c' => '"object"',
+            'd' => '"number"',
+            'e' => 'null'
+        ],
+        'resposta_correta' => 'c'
     ],
     [
-        'pergunta' => 'Qual é a língua mais falada no mundo?',
-        'alternativas' => ['Inglês', 'Mandarim', 'Espanhol', 'Hindi'],
-        'resposta_correta' => 1
+        'id' => 7,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'O que é o "Event Loop" em JavaScript?',
+        'alternativas' => [
+            'a' => 'Um loop que executa eventos de mouse',
+            'b' => 'Um mecanismo que permite JavaScript executar operações não-bloqueantes',
+            'c' => 'Uma função para criar loops infinitos',
+            'd' => 'Um método para detectar eventos do teclado',
+            'e' => 'Um tipo de estrutura de repetição'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quantos continentes existem?',
-        'alternativas' => ['5', '6', '7', '8'],
-        'resposta_correta' => 2
+        'id' => 8,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'Qual é a diferença entre "let", "const" e "var"?',
+        'alternativas' => [
+            'a' => 'Não há diferença, são sinônimos',
+            'b' => 'var tem escopo de função, let e const têm escopo de bloco; const não pode ser reatribuído',
+            'c' => 'let é mais rápido que var',
+            'd' => 'const só funciona com números constantes',
+            'e' => 'var é a única forma moderna de declarar variáveis'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é o menor país do mundo?',
-        'alternativas' => ['Mônaco', 'Vaticano', 'San Marino', 'Liechtenstein'],
-        'resposta_correta' => 1
+        'id' => 9,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'O que são Promises em JavaScript?',
+        'alternativas' => [
+            'a' => 'Funções que sempre retornam true',
+            'b' => 'Objetos que representam a eventual conclusão ou falha de uma operação assíncrona',
+            'c' => 'Variáveis que prometem não mudar de valor',
+            'd' => 'Métodos para criar promessas ao usuário',
+            'e' => 'Estruturas de dados para armazenar promessas'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quem escreveu "Dom Casmurro"?',
-        'alternativas' => ['José de Alencar', 'Machado de Assis', 'Clarice Lispector', 'Jorge Amado'],
-        'resposta_correta' => 1
+        'id' => 10,
+        'categoria' => 'JavaScript',
+        'pergunta' => 'O que é "destructuring" em JavaScript?',
+        'alternativas' => [
+            'a' => 'Uma forma de destruir objetos da memória',
+            'b' => 'Um método para deletar propriedades',
+            'c' => 'Uma sintaxe para extrair valores de arrays ou propriedades de objetos em variáveis distintas',
+            'd' => 'Uma técnica para quebrar strings',
+            'e' => 'Um tipo de erro de sintaxe'
+        ],
+        'resposta_correta' => 'c'
+    ],
+
+    
+    [
+        'id' => 11,
+        'categoria' => 'PHP',
+        'pergunta' => 'Qual é a diferença entre "include" e "require" em PHP?',
+        'alternativas' => [
+            'a' => 'Não há diferença',
+            'b' => 'require gera um erro fatal se o arquivo não for encontrado, include gera apenas um warning',
+            'c' => 'include é mais rápido que require',
+            'd' => 'require só funciona com arquivos .php',
+            'e' => 'include é deprecated'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é a fórmula química da água?',
-        'alternativas' => ['H2O', 'CO2', 'O2', 'H2O2'],
-        'resposta_correta' => 0
+        'id' => 12,
+        'categoria' => 'PHP',
+        'pergunta' => 'O que são Traits em PHP?',
+        'alternativas' => [
+            'a' => 'Um tipo de variável especial',
+            'b' => 'Mecanismo de reutilização de código que permite compartilhar métodos entre classes',
+            'c' => 'Uma forma de criar interfaces',
+            'd' => 'Um método para rastrear bugs',
+            'e' => 'Uma função nativa do PHP'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quantos dias tem um ano bissexto?',
-        'alternativas' => ['364', '365', '366', '367'],
-        'resposta_correta' => 2
+        'id' => 13,
+        'categoria' => 'PHP',
+        'pergunta' => 'Qual é a diferença entre "==" e "===" em PHP?',
+        'alternativas' => [
+            'a' => 'Não há diferença',
+            'b' => '== compara valores, === compara valores e tipos',
+            'c' => '=== é mais lento',
+            'd' => '== só funciona com strings',
+            'e' => '=== foi introduzido no PHP 8'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é a montanha mais alta do mundo?',
-        'alternativas' => ['K2', 'Kilimanjaro', 'Monte Everest', 'Aconcágua'],
-        'resposta_correta' => 2
+        'id' => 14,
+        'categoria' => 'PHP',
+        'pergunta' => 'O que é um "namespace" em PHP?',
+        'alternativas' => [
+            'a' => 'Um tipo de variável global',
+            'b' => 'Uma forma de organizar código e evitar conflitos de nomes',
+            'c' => 'Um método para criar espaços em strings',
+            'd' => 'Uma função para gerenciar memória',
+            'e' => 'Um tipo de comentário especial'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Em que país fica a Torre Eiffel?',
-        'alternativas' => ['Itália', 'França', 'Espanha', 'Inglaterra'],
-        'resposta_correta' => 1
+        'id' => 15,
+        'categoria' => 'PHP',
+        'pergunta' => 'O que faz a função "array_map()" em PHP?',
+        'alternativas' => [
+            'a' => 'Cria um mapa visual do array',
+            'b' => 'Aplica uma função callback a cada elemento de um array e retorna um novo array',
+            'c' => 'Mapeia arrays para objetos',
+            'd' => 'Ordena arrays alfabeticamente',
+            'e' => 'Remove elementos duplicados'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é o animal terrestre mais rápido?',
-        'alternativas' => ['Leão', 'Guepardo', 'Leopardo', 'Tigre'],
-        'resposta_correta' => 1
+        'id' => 16,
+        'categoria' => 'PHP',
+        'pergunta' => 'O que é PDO em PHP?',
+        'alternativas' => [
+            'a' => 'PHP Data Object - uma extensão para acessar bancos de dados',
+            'b' => 'PHP Document Object',
+            'c' => 'PHP Debug Output',
+            'd' => 'PHP Development Options',
+            'e' => 'PHP Data Organizer'
+        ],
+        'resposta_correta' => 'a'
     ],
     [
-        'pergunta' => 'Quantos ossos tem o corpo humano adulto?',
-        'alternativas' => ['186', '206', '226', '246'],
-        'resposta_correta' => 1
+        'id' => 17,
+        'categoria' => 'PHP',
+        'pergunta' => 'Qual é o modificador de acesso mais restritivo em PHP?',
+        'alternativas' => [
+            'a' => 'public',
+            'b' => 'protected',
+            'c' => 'private',
+            'd' => 'static',
+            'e' => 'final'
+        ],
+        'resposta_correta' => 'c'
     ],
     [
-        'pergunta' => 'Qual é a moeda oficial do Japão?',
-        'alternativas' => ['Yuan', 'Won', 'Iene', 'Dong'],
-        'resposta_correta' => 2
+        'id' => 18,
+        'categoria' => 'PHP',
+        'pergunta' => 'O que são "Magic Methods" em PHP?',
+        'alternativas' => [
+            'a' => 'Métodos que executam truques de mágica',
+            'b' => 'Métodos especiais que começam com __ e são chamados automaticamente em certas situações',
+            'c' => 'Métodos que são mais rápidos que métodos normais',
+            'd' => 'Métodos que não precisam ser declarados',
+            'e' => 'Métodos exclusivos do PHP 8'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quem descobriu o Brasil?',
-        'alternativas' => ['Cristóvão Colombo', 'Pedro Álvares Cabral', 'Vasco da Gama', 'Fernão de Magalhães'],
-        'resposta_correta' => 1
+        'id' => 19,
+        'categoria' => 'PHP',
+        'pergunta' => 'O que é "Type Hinting" em PHP?',
+        'alternativas' => [
+            'a' => 'Uma forma de dar dicas ao programador',
+            'b' => 'Especificar o tipo de dado esperado em parâmetros de função e retornos',
+            'c' => 'Um método de debug',
+            'd' => 'Uma técnica de otimização',
+            'e' => 'Um tipo de comentário'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é o maior mamífero do mundo?',
-        'alternativas' => ['Elefante africano', 'Baleia azul', 'Girafa', 'Tubarão-baleia'],
-        'resposta_correta' => 1
+        'id' => 20,
+        'categoria' => 'PHP',
+        'pergunta' => 'O que é Composer em PHP?',
+        'alternativas' => [
+            'a' => 'Um editor de código',
+            'b' => 'Um gerenciador de dependências para PHP',
+            'c' => 'Um framework PHP',
+            'd' => 'Uma ferramenta para compor músicas',
+            'e' => 'Um compilador PHP'
+        ],
+        'resposta_correta' => 'b'
+    ],
+
+    
+    [
+        'id' => 21,
+        'categoria' => 'MySQL',
+        'pergunta' => 'Qual é a diferença entre INNER JOIN e LEFT JOIN?',
+        'alternativas' => [
+            'a' => 'Não há diferença',
+            'b' => 'INNER JOIN retorna apenas registros com correspondência em ambas tabelas, LEFT JOIN retorna todos da esquerda',
+            'c' => 'LEFT JOIN é mais rápido',
+            'd' => 'INNER JOIN só funciona com chaves primárias',
+            'e' => 'LEFT JOIN foi descontinuado'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quantos lados tem um hexágono?',
-        'alternativas' => ['4', '5', '6', '7'],
-        'resposta_correta' => 2
+        'id' => 22,
+        'categoria' => 'MySQL',
+        'pergunta' => 'O que é um índice em MySQL e para que serve?',
+        'alternativas' => [
+            'a' => 'Uma forma de numerar registros',
+            'b' => 'Uma estrutura de dados que melhora a velocidade de recuperação de dados',
+            'c' => 'Um tipo de chave estrangeira',
+            'd' => 'Uma função para indexar strings',
+            'e' => 'Um método de backup'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é a capital da Argentina?',
-        'alternativas' => ['Santiago', 'Montevidéu', 'Buenos Aires', 'Lima'],
-        'resposta_correta' => 2
+        'id' => 23,
+        'categoria' => 'MySQL',
+        'pergunta' => 'O que faz a cláusula HAVING em SQL?',
+        'alternativas' => [
+            'a' => 'É sinônimo de WHERE',
+            'b' => 'Filtra resultados após agregação com GROUP BY',
+            'c' => 'Verifica se um registro existe',
+            'd' => 'Cria uma nova coluna',
+            'e' => 'Deleta registros duplicados'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Em que ano começou a Segunda Guerra Mundial?',
-        'alternativas' => ['1937', '1939', '1941', '1943'],
-        'resposta_correta' => 1
+        'id' => 24,
+        'categoria' => 'MySQL',
+        'pergunta' => 'O que é uma transação em MySQL?',
+        'alternativas' => [
+            'a' => 'Uma transferência de dados entre tabelas',
+            'b' => 'Um conjunto de operações que são executadas como uma única unidade de trabalho',
+            'c' => 'Um tipo de consulta complexa',
+            'd' => 'Uma forma de fazer backup',
+            'e' => 'Um método de autenticação'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é o metal mais abundante na crosta terrestre?',
-        'alternativas' => ['Ferro', 'Alumínio', 'Cobre', 'Ouro'],
-        'resposta_correta' => 1
+        'id' => 25,
+        'categoria' => 'MySQL',
+        'pergunta' => 'Qual é a diferença entre DELETE e TRUNCATE?',
+        'alternativas' => [
+            'a' => 'Não há diferença',
+            'b' => 'DELETE pode usar WHERE e é mais lento, TRUNCATE remove todos os registros rapidamente',
+            'c' => 'TRUNCATE é mais seguro',
+            'd' => 'DELETE foi descontinuado',
+            'e' => 'TRUNCATE só funciona com tabelas temporárias'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quantos jogadores tem um time de futebol em campo?',
-        'alternativas' => ['9', '10', '11', '12'],
-        'resposta_correta' => 2
+        'id' => 26,
+        'categoria' => 'MySQL',
+        'pergunta' => 'O que são Stored Procedures em MySQL?',
+        'alternativas' => [
+            'a' => 'Procedimentos para armazenar dados',
+            'b' => 'Conjuntos de instruções SQL armazenadas no servidor que podem ser reutilizadas',
+            'c' => 'Métodos para fazer backup',
+            'd' => 'Funções JavaScript no MySQL',
+            'e' => 'Tipos de índices especiais'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é o rio mais extenso do mundo?',
-        'alternativas' => ['Nilo', 'Amazonas', 'Yangtzé', 'Mississippi'],
-        'resposta_correta' => 1
+        'id' => 27,
+        'categoria' => 'MySQL',
+        'pergunta' => 'O que é normalização de banco de dados?',
+        'alternativas' => [
+            'a' => 'Tornar todos os dados em letras minúsculas',
+            'b' => 'Processo de organizar dados para reduzir redundância e melhorar integridade',
+            'c' => 'Um método de backup',
+            'd' => 'Uma técnica de criptografia',
+            'e' => 'Um tipo de índice'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quem foi o primeiro presidente do Brasil?',
-        'alternativas' => ['Getúlio Vargas', 'Dom Pedro II', 'Deodoro da Fonseca', 'Juscelino Kubitschek'],
-        'resposta_correta' => 2
+        'id' => 28,
+        'categoria' => 'MySQL',
+        'pergunta' => 'O que é uma VIEW em MySQL?',
+        'alternativas' => [
+            'a' => 'Uma forma de visualizar tabelas',
+            'b' => 'Uma tabela virtual baseada no resultado de uma consulta SQL',
+            'c' => 'Um tipo de índice',
+            'd' => 'Uma permissão de usuário',
+            'e' => 'Um método de visualização de logs'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Qual é a velocidade da luz?',
-        'alternativas' => ['300.000 km/s', '150.000 km/s', '450.000 km/s', '600.000 km/s'],
-        'resposta_correta' => 0
+        'id' => 29,
+        'categoria' => 'MySQL',
+        'pergunta' => 'O que são as propriedades ACID em bancos de dados?',
+        'alternativas' => [
+            'a' => 'Um tipo de teste de pH',
+            'b' => 'Atomicidade, Consistência, Isolamento e Durabilidade',
+            'c' => 'Um protocolo de segurança',
+            'd' => 'Um tipo de índice avançado',
+            'e' => 'Uma técnica de otimização'
+        ],
+        'resposta_correta' => 'b'
     ],
     [
-        'pergunta' => 'Quantos estados tem o Brasil?',
-        'alternativas' => ['24', '25', '26', '27'],
-        'resposta_correta' => 2
-    ],
-    [
-        'pergunta' => 'Qual é o maior deserto do mundo?',
-        'alternativas' => ['Saara', 'Gobi', 'Antártica', 'Kalahari'],
-        'resposta_correta' => 2
-    ],
-    [
-        'pergunta' => 'Em que século vivemos atualmente?',
-        'alternativas' => ['Século XX', 'Século XXI', 'Século XXII', 'Século XIX'],
-        'resposta_correta' => 1
+        'id' => 30,
+        'categoria' => 'MySQL',
+        'pergunta' => 'Qual é a diferença entre CHAR e VARCHAR?',
+        'alternativas' => [
+            'a' => 'Não há diferença',
+            'b' => 'CHAR tem tamanho fixo, VARCHAR tem tamanho variável',
+            'c' => 'VARCHAR é mais rápido',
+            'd' => 'CHAR só aceita números',
+            'e' => 'VARCHAR foi descontinuado'
+        ],
+        'resposta_correta' => 'b'
     ]
 ];
 
-$_SESSION['perguntas'] = $perguntas;
-$_SESSION['pergunta_atual'] = 0;
-$_SESSION['pontuacao'] = 0;
-$_SESSION['respostas_usuario'] = [];
-
-if (isset($_GET['reiniciar']) && $_GET['reiniciar'] == 1) {
-    header('Location: quiz.php');
-    exit;
+foreach ($perguntas as $pergunta) {
+    echo "<h3>Pergunta {$pergunta['id']} - {$pergunta['categoria']}</h3>";
+    echo "<p>{$pergunta['pergunta']}</p>";
+    echo "<ul>";
+    foreach ($pergunta['alternativas'] as $letra => $alternativa) {
+        echo "<li>{$letra}) {$alternativa}</li>";
+    }
+    echo "</ul>";
+    echo "<p><strong>Resposta correta: {$pergunta['resposta_correta']}</strong></p>";
+    echo "<hr>";
 }
 
+?>
