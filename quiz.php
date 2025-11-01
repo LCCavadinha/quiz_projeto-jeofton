@@ -47,7 +47,7 @@ $pergunta = $perguntas[$pergunta_atual];
         </form>
         
         <br>
-        <a href="reiniciar.php">🔄 Recomeçar Quiz</a>
+        <a href="index.php?reiniciar=1">🔄 Recomeçar Quiz</a>
     </div>
 </body>
 </html>

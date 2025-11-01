@@ -44,6 +44,7 @@ $_SESSION['pergunta_atual']++;
         <?php endif; ?>
         
         <a href="quiz.php">Próxima Pergunta</a>
+        <a href="index.php?reiniciar=1">🔄 Recomeçar Quiz</a>
     </div>
 </body>
 </html>

@@ -61,7 +61,7 @@ $respostas_usuario = $_SESSION['respostas_usuario'];
             <?php endforeach; ?>
         </div>
         
-        <a href="index.php">Jogar Novamente</a>
+        <a href="index.php?reiniciar=1">🔄Jogar Novamente</a>
     </div>
 </body>
 </html>

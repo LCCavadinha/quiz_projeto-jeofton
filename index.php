@@ -158,3 +158,8 @@ $_SESSION['pergunta_atual'] = 0;
 $_SESSION['pontuacao'] = 0;
 $_SESSION['respostas_usuario'] = [];
 
+if (isset($_GET['reiniciar']) && $_GET['reiniciar'] == 1) {
+    header('Location: quiz.php');
+    exit;
+}
+
