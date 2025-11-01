@@ -22,7 +22,7 @@ if ($acertou) {
 
 $_SESSION['pergunta_atual']++;
 
-<?php if ($acertou): ?>
+if ($acertou): ?>
     <div class="feedback correto">
         <h2>✅ Correto!</h2>
         <p>Parabéns, você acertou!</p>
@@ -30,7 +30,7 @@ $_SESSION['pergunta_atual']++;
 <?php else: ?>
     <div class="feedback errado">
         <h2>❌ Errado!</h2>
-        <p>A resposta correta era: <strong><?php echo $perguntas[$pergunta_atual - 1]['alternativas'][$resposta_correta]; ?></strong></p>
+        <p>A resposta correta era: <strong><?php echo $perguntas[$pergunta_atual]['alternativas'][$resposta_correta]; ?></strong></p>
     </div>
 <?php endif; ?>
 
