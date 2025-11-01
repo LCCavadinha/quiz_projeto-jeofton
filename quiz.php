@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Verifica se o quiz foi iniciado
+
 if (!isset($_SESSION['perguntas'])) {
     header('Location: index.php');
     exit;
@@ -10,7 +10,7 @@ if (!isset($_SESSION['perguntas'])) {
 $perguntas = $_SESSION['perguntas'];
 $pergunta_atual = $_SESSION['pergunta_atual'];
 
-// Verifica se ainda há perguntas
+
 if ($pergunta_atual >= count($perguntas)) {
     header('Location: resultado.php');
     exit;
