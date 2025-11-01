@@ -16,39 +16,37 @@ if ($pergunta_atual >= count($perguntas)) {
 
 $pergunta = $perguntas[$pergunta_atual];
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz - Pergunta <?php echo $pergunta_atual + 1; ?></title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <div>
-        <div>
+    <main class="container">
+        <header>
             <p>Pergunta <?php echo $pergunta_atual + 1; ?> de <?php echo count($perguntas); ?></p>
-        </div>
-        
+        </header>
+
         <h2><?php echo $pergunta['pergunta']; ?></h2>
-        
+
         <form action="verificar.php" method="POST">
-            <div>
+            <div class="alternativas">
                 <?php foreach ($pergunta['alternativas'] as $indice => $alternativa): ?>
                     <label>
                         <input type="radio" name="resposta" value="<?php echo $indice; ?>" required>
                         <span><?php echo $alternativa; ?></span>
                     </label>
-                    <br>
                 <?php endforeach; ?>
             </div>
-            <br>
-            <button type="submit">Responder</button>
+            <button type="submit">Responder 🚀</button>
         </form>
-        
-        <br>
+
         <a href="index.php?reiniciar=1">🔄 Recomeçar Quiz</a>
-    </div>
+    </main>
+
+    <script src="assets/script.js"></script>
 </body>
 </html>
-

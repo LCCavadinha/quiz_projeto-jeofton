@@ -1,0 +1,171 @@
+:root {
+  --cor-principal: #ff6f61;
+  --cor-secundaria: #ffd166;
+  --cor-certa: #06d6a0;
+  --cor-errada: #ef476f;
+  --cor-fundo: #1b1b2f;
+  --cor-texto: #f1f1f1;
+  --sombra: 0 0 20px rgba(0, 0, 0, 0.4);
+  --transicao: 0.3s ease-in-out;
+  --radius: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  background: #232946;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--sombra);
+  width: 100%;
+  max-width: 600px;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Cabeçalhos */
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: var(--cor-secundaria);
+  font-size: 2rem;
+}
+
+h2 {
+  color: var(--cor-principal);
+}
+
+p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Perguntas e respostas */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  background: #2a2a4e;
+  padding: 10px 15px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transicao);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+label:hover {
+  background: var(--cor-principal);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+input[type="radio"] {
+  accent-color: var(--cor-secundaria);
+  transform: scale(1.3);
+}
+
+/* Botões */
+button, a {
+  display: inline-block;
+  background: var(--cor-principal);
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  transition: var(--transicao);
+  text-decoration: none;
+  margin: 8px 0;
+}
+
+button:hover, a:hover {
+  background: var(--cor-secundaria);
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* Feedback de respostas */
+.resultado {
+  text-align: center;
+  padding: 20px;
+}
+
+.resultado h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.correto {
+  color: var(--cor-certa);
+  font-weight: bold;
+}
+
+.errado {
+  color: var(--cor-errada);
+  font-weight: bold;
+}
+
+/* Revisão final */
+.revisao {
+  background: #2b2b4e;
+  border-radius: var(--radius);
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.revisao hr {
+  border: none;
+  border-top: 1px solid #444;
+  margin: 10px 0;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  button, a {
+    width: 100%;
+  }
+}
