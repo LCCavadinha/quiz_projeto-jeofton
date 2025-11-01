@@ -1,6 +1,7 @@
 <?php
+session_start();
+
 $perguntas = [
-    
     [
         'id' => 1,
         'categoria' => 'JavaScript',
@@ -131,8 +132,6 @@ $perguntas = [
         ],
         'resposta_correta' => 'c'
     ],
-
-    
     [
         'id' => 11,
         'categoria' => 'PHP',
@@ -263,8 +262,6 @@ $perguntas = [
         ],
         'resposta_correta' => 'b'
     ],
-
-    
     [
         'id' => 21,
         'categoria' => 'MySQL',
@@ -397,16 +394,35 @@ $perguntas = [
     ]
 ];
 
-foreach ($perguntas as $pergunta) {
-    echo "<h3>Pergunta {$pergunta['id']} - {$pergunta['categoria']}</h3>";
-    echo "<p>{$pergunta['pergunta']}</p>";
-    echo "<ul>";
-    foreach ($pergunta['alternativas'] as $letra => $alternativa) {
-        echo "<li>{$letra}) {$alternativa}</li>";
-    }
-    echo "</ul>";
-    echo "<p><strong>Resposta correta: {$pergunta['resposta_correta']}</strong></p>";
-    echo "<hr>";
-}
+// Salva as perguntas na sessão
+$_SESSION['perguntas'] = $perguntas;
+$_SESSION['pergunta_atual'] = 0;
+$_SESSION['pontuacao'] = 0;
+$_SESSION['respostas_usuario'] = [];
 
+// Se vier com parâmetro reiniciar=1, vai direto pro quiz
+if (isset($_GET['reiniciar']) && $_GET['reiniciar'] == 1) {
+    header('Location: quiz.php');
+    exit;
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Jogo de Perguntas</title>
+</head>
+<body>
+    <div>
+        <h1>🎯 Quiz de Programação</h1>
+        <p>Teste seus conhecimentos em JavaScript, PHP e MySQL!</p>
+        <p>Total de perguntas: <strong><?php echo count($perguntas); ?></strong></p>
+        <p>📚 Categorias: JavaScript (10), PHP (10), MySQL (10)</p>
+        
+        <br>
+        <a href="quiz.php">▶️ Começar Quiz</a>
+    </div>
+</body>
+</html>
