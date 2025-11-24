@@ -413,6 +413,7 @@ if (isset($_GET['reiniciar']) && $_GET['reiniciar'] == 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz - Jogo de Perguntas</title>
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
     <div>

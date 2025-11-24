@@ -1,33 +1,51 @@
+// assets/script.js - versão com logs e tratamento robusto
 document.addEventListener("DOMContentLoaded", () => {
-  const forms = document.querySelectorAll("form");
+  try {
+    const forms = Array.from(document.querySelectorAll("form"));
+    if (!forms.length) {
+      console.log("script.js: nenhum <form> encontrado nesta página.");
+      return;
+    }
 
-  forms.forEach((form) => {
-    const labels = form.querySelectorAll("label");
-    const radios = form.querySelectorAll('input[type="radio"]');
+    forms.forEach((form, formIndex) => {
+      // Delegação: captura cliques nas labels dentro do formulário
+      form.addEventListener("click", (event) => {
+        // procura a label mais próxima do alvo do clique
+        const label = event.target.closest("label");
+        if (!label || !form.contains(label)) return;
 
-    // Clique na label
-    labels.forEach((label) => {
-      const radio = label.querySelector('input[type="radio"]');
+        const radio = label.querySelector('input[type="radio"]');
+        if (!radio) return;
 
-      label.addEventListener("click", () => {
-        // Desmarca todas as labels
-        labels.forEach((l) => l.classList.remove("ativo"));
+        // remove classe 'ativo' de todas as labels deste form
+        const allLabels = Array.from(form.querySelectorAll("label"));
+        allLabels.forEach((l) => l.classList.remove("ativo"));
 
-        // Marca a label clicada
+        // marca e destaca a label clicada
         label.classList.add("ativo");
-        radio.checked = true; // garante que o rádio seja realmente selecionado
+        radio.checked = true;
+
+        // log para debug
+        console.log(`script.js: form ${formIndex} - opção selecionada:`, radio.value);
+      });
+
+      // validação de envio
+      form.addEventListener("submit", (event) => {
+        const radios = Array.from(form.querySelectorAll('input[type="radio"]'));
+        const selecionado = radios.some((r) => r.checked);
+        if (!selecionado) {
+          event.preventDefault();
+          // Use alert como fallback simples
+          alert("Selecione uma resposta antes de enviar.");
+          console.warn("script.js: envio bloqueado — nenhuma opção selecionada.");
+          return false;
+        }
+        // opcional: log de envio
+        console.log("script.js: formulário enviado (validação OK).");
       });
     });
-
-    // Verificação antes de enviar
-    form.addEventListener("submit", (event) => {
-      const selecionado = Array.from(radios).some((radio) => radio.checked);
-
-      if (!selecionado) {
-        event.preventDefault();
-        alert("Selecione uma resposta!");
-      }
-    });
-  });
+  } catch (err) {
+    // mostra erro inesperado no console para você copiar/colar aqui
+    console.error("script.js: erro inesperado:", err);
+  }
 });
-

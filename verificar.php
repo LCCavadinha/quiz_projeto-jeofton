@@ -1,25 +1,48 @@
 <?php
 session_start();
 
+// valida presença do post
 if (!isset($_POST['resposta'])) {
     header('Location: quiz.php');
     exit;
 }
 
-$perguntas = $_SESSION['perguntas'];
-$pergunta_atual = $_SESSION['pergunta_atual'];
-$resposta_usuario = (int)$_POST['resposta'];
-$resposta_correta = $perguntas[$pergunta_atual]['resposta_correta'];
-
-$_SESSION['respostas_usuario'][$pergunta_atual] = $resposta_usuario;
-
-$acertou = ($resposta_usuario === $resposta_correta);
-
-if ($acertou) {
-    $_SESSION['pontuacao']++;
+// garante que temos perguntas
+if (!isset($_SESSION['perguntas']) || !isset($_SESSION['pergunta_atual'])) {
+    header('Location: index.php');
+    exit;
 }
 
-$_SESSION['pergunta_atual']++;
+$perguntas = $_SESSION['perguntas'];
+$pergunta_atual = $_SESSION['pergunta_atual'];
+
+// usa uma cópia do índice atual antes de incrementar
+$current_index = $pergunta_atual;
+
+// pega a resposta do usuário como string (não convertemos para int)
+$resposta_usuario = (string) $_POST['resposta'];
+
+// valida que o índice exista
+if (!isset($perguntas[$current_index])) {
+    header('Location: index.php');
+    exit;
+}
+
+$resposta_correta = $perguntas[$current_index]['resposta_correta'] ?? null;
+
+// registra resposta do usuário
+$_SESSION['respostas_usuario'][$current_index] = $resposta_usuario;
+
+// determina acerto (comparação estrita de string)
+$acertou = ($resposta_usuario === $resposta_correta);
+
+// incrementa pontuação se acertou
+if ($acertou) {
+    $_SESSION['pontuacao'] = ($_SESSION['pontuacao'] ?? 0) + 1;
+}
+
+// avança para a próxima pergunta
+$_SESSION['pergunta_atual'] = $pergunta_atual + 1;
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -39,8 +62,14 @@ $_SESSION['pergunta_atual']++;
         <?php else: ?>
             <div class="errado">
                 <h2>❌ Errado!</h2>
-                <p>A resposta correta era: 
-                    <strong><?php echo $perguntas[$pergunta_atual]['alternativas'][$resposta_correta]; ?></strong>
+                <p>A resposta correta era:
+                    <strong>
+                        <?php
+                            // Mostra a alternativa correta com segurança
+                            $texto_correto = $perguntas[$current_index]['alternativas'][$resposta_correta] ?? '—';
+                            echo htmlspecialchars($texto_correto, ENT_QUOTES, 'UTF-8');
+                        ?>
+                    </strong>
                 </p>
             </div>
         <?php endif; ?>
@@ -51,6 +80,7 @@ $_SESSION['pergunta_atual']++;
     <script src="assets/script.js"></script>
 </body>
 </html>
+
 
 
 

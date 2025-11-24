@@ -1,16 +1,16 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['pontuacao'])) {
+if (!isset($_SESSION['pontuacao']) || !isset($_SESSION['perguntas'])) {
     header('Location: index.php');
     exit;
 }
 
 $pontuacao = $_SESSION['pontuacao'];
-$total_perguntas = count($_SESSION['perguntas']);
-$percentual = ($pontuacao / $total_perguntas) * 100;
 $perguntas = $_SESSION['perguntas'];
-$respostas_usuario = $_SESSION['respostas_usuario'];
+$total_perguntas = count($perguntas);
+$percentual = ($total_perguntas > 0) ? ($pontuacao / $total_perguntas) * 100 : 0;
+$respostas_usuario = $_SESSION['respostas_usuario'] ?? [];
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -26,7 +26,7 @@ $respostas_usuario = $_SESSION['respostas_usuario'];
 
         <div class="pontuacao">
             <h2>Sua Pontuação:</h2>
-            <p><strong><?php echo $pontuacao; ?> / <?php echo $total_perguntas; ?></strong></p>
+            <p><strong><?php echo (int)$pontuacao; ?> / <?php echo (int)$total_perguntas; ?></strong></p>
             <p><strong><?php echo number_format($percentual, 1); ?>%</strong></p>
         </div>
 
@@ -43,18 +43,26 @@ $respostas_usuario = $_SESSION['respostas_usuario'];
         <section class="revisao">
             <h3>Revisão das Respostas:</h3>
             <?php foreach ($perguntas as $indice => $pergunta): ?>
-                <?php 
-                    $resposta_usuario = $respostas_usuario[$indice];
-                    $resposta_correta = $pergunta['resposta_correta'];
-                    $acertou = ($resposta_usuario === $resposta_correta);
+                <?php
+                    $resposta_usuario = $respostas_usuario[$indice] ?? null;
+                    $resposta_correta = $pergunta['resposta_correta'] ?? null;
+                    $acertou = ($resposta_usuario !== null && $resposta_usuario === $resposta_correta);
                 ?>
-                <div>
-                    <p><strong>Pergunta <?php echo $indice + 1; ?>:</strong> <?php echo $pergunta['pergunta']; ?></p>
-                    <p>Sua resposta: <?php echo $pergunta['alternativas'][$resposta_usuario]; ?> 
-                        <?php echo $acertou ? '✅' : '❌'; ?>
+                <div class="revisao-item">
+                    <p><strong>Pergunta <?php echo $indice + 1; ?>:</strong> <?php echo htmlspecialchars($pergunta['pergunta'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p>
+                        Sua resposta:
+                        <?php
+                            if ($resposta_usuario === null) {
+                                echo '<em>Não respondeu</em>';
+                            } else {
+                                $texto_usuario = $pergunta['alternativas'][$resposta_usuario] ?? 'Resposta inválida';
+                                echo htmlspecialchars($texto_usuario, ENT_QUOTES, 'UTF-8') . ' ' . ($acertou ? '✅' : '❌');
+                            }
+                        ?>
                     </p>
                     <?php if (!$acertou): ?>
-                        <p>Resposta correta: <?php echo $pergunta['alternativas'][$resposta_correta]; ?></p>
+                        <p>Resposta correta: <?php echo htmlspecialchars($pergunta['alternativas'][$resposta_correta] ?? '—', ENT_QUOTES, 'UTF-8'); ?></p>
                     <?php endif; ?>
                     <hr>
                 </div>
